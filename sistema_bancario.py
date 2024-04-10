@@ -1,6 +1,4 @@
 import datetime
-import textwrap
-
 
 class Usuario:
     def __init__(self, data_de_nascimento, email, cpf, nome, endereco):
@@ -45,7 +43,9 @@ class banco:
 
     
     def buscar_usuario_por_cpf(self, cpf):
-        return self.usuarios.get(cpf, None)
+        usuario = self.usuarios.get(cpf, None)
+        return usuario
+    
     
     def buscar_conta_por_cpf(self, cpf):
         return self.contas.get(cpf, None)
@@ -157,10 +157,7 @@ def menu(usuario):
             else:
                 for movimentacao in extrato.split('\n'):
                     print(movimentacao)
-                    #if "Saque" in movimentacao:
-                    #    mensagem = mensagemPersonalizada("", valor)
-                    #    print(mensagem)
-                    
+
             print(f"\nSaldo: R$ {saldo:.2f}")
             print("--------------------------------------------------------")
 
@@ -185,8 +182,7 @@ def menu(usuario):
 def identificarUsuario():
     cpf = input("Informe o seu CPF (formato: xxx.xxx.xxx-xx):")
     usuario = banco.buscar_usuario_por_cpf(cpf)
-    if usuario != None :
-        print("Não foi possivel cadastrar, pois esse cpf já está em uso")
+    if usuario != None : 
         menu(usuario)
        
     else:
@@ -196,14 +192,6 @@ def identificarUsuario():
        menu(usuario)
 
 identificarUsuario()
-
-#def identificarUsuario():
-    #identificarUsuario = [Usuario for usuario in usuarios]
-       
-
-#def lista_de_contas(usuario):
-#    for usuario in usuario:
-
 
 
             
